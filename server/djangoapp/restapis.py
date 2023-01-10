@@ -3,6 +3,12 @@ import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
 
+max_id = 1000
+
+def get_and_incr_id():
+    global max_id
+    max_id += 1
+    return max_id - 1
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
@@ -68,6 +74,7 @@ def get_dealers_from_cf(url, **kwargs):
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
 def get_dealer_reviews_from_cf(url, dealerId):
+    global max_id
     results = []
     # Call get_request with a URL parameter
     json_result = get_request(url, id=dealerId)
@@ -77,6 +84,8 @@ def get_dealer_reviews_from_cf(url, dealerId):
         for doc in json_result["data"]["docs"]:
             # Get its content in `doc` object
             # Create a CarDealer object with values in `doc` object
+            if doc["id"] > max_id:
+               max_id = doc["id"]
             dealer_obj = DealerReview(dealership=doc["dealership"], name=doc["name"], purchase=doc["purchase"],
                                       review=doc["review"], purchase_date=doc["purchase_date"],
                                       car_make=doc["car_make"], car_model=doc["car_model"],
