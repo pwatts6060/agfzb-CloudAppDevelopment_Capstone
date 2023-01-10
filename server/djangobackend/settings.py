@@ -30,8 +30,8 @@ APPEND_SLASH = True
 ALLOWED_HOSTS = ["localhost",
                  "127.0.0.1",
                  "djangoapp.mybluemix.net",
-                 "https://patrickwatts-8000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp",
-                 "https://patrickwatts-8000.theiadocker-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp",
+                 "https://patrickwatts-8000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
+                 "https://patrickwatts-8000.theiadocker-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
                  "bestcars.us-south.cf.appdomain.cloud/static"]
 
 
